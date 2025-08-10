@@ -23,3 +23,4 @@ Si quieres colaborar en el proyecto, puedes crear un problema (issue) o enviar u
 # Licencia
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
+![logo](https://github.com/user-attachments/assets/7f338d93-a6cc-4412-b554-f56757505dd9)
