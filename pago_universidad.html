@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pago de Cuotas Universitarias - Demo Stellar</title>
+</head>
+<body>
+  <h2>Pago de Cuotas Universitarias (Testnet)</h2>
+
+  <label>Concepto:
+    <select id="concepto">
+      <option value="Inscripción">Inscripción</option>
+      <option value="Mensualidad">Mensualidad</option>
+      <option value="Curso Extra">Curso Extra</option>
+    </select>
+  </label>
+  <br><br>
+
+  <label>Monto (XLM): <input type="number" id="monto" value="10"></label>
+  <br><br>
+
+  <button id="pagarBtn">Pagar</button>
+
+  <p id="resultado"></p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/10.4.0/stellar-sdk.min.js"></script>
+  <script>
+    const servidor = new StellarSdk.Server("https://horizon-testnet.stellar.org");
+    StellarSdk.Networks.TESTNET;
+
+    // Claves de prueba
+    const estudianteSK = "SAZAQTOMRDBY64DAOBBWTGMKWIDH2UQUCYBXJGMWG3PT6GFT4VWILUSF";
+    const universidadPB = "GCG54GCZ2SQS7DI2547ZZTERRFBVRCBLJ7B6NJQBKGB6HDHAT5OP6GJA";
+
+    document.getElementById("pagarBtn").onclick = async function () {
+      const concepto = document.getElementById("concepto").value;
+      const monto = document.getElementById("monto").value;
+
+      try {
+        const fuente = await servidor.loadAccount(StellarSdk.Keypair.fromSecret(estudianteSK).publicKey());
+        const transaccion = new StellarSdk.TransactionBuilder(fuente, {
+          fee: StellarSdk.BASE_FEE,
+          networkPassphrase: StellarSdk.Networks.TESTNET
+        })
+          .addOperation(StellarSdk.Operation.payment({
+            destination: universidadPB,
+            asset: StellarSdk.Asset.native(),
+            amount: monto
+          }))
+          .addMemo(StellarSdk.Memo.text(concepto))
+          .setTimeout(30)
+          .build();
+
+        transaccion.sign(StellarSdk.Keypair.fromSecret(estudianteSK));
+        const resultado = await servidor.submitTransaction(transaccion);
+
+        document.getElementById("resultado").innerHTML =
+          `✅ Pago realizado. Ver transacción: <a href="https://horizon-testnet.stellar.org/transactions/${resultado.hash}" target="_blank">${resultado.hash}</a>`;
+      } catch (e) {
+        console.error(e);
+        document.getElementById("resultado").innerText = "❌ Error en el pago: " + e;
+      }
+    };
+  </script>
+</body>
+</html>
