@@ -1,25 +1,25 @@
 # PayMyUni
 PayMyUni es una solución que permite a los estudiantes pagar sus cuotas universitarias (inscripción, mensualidades o cursos extras) de forma rápida, económica y segura utilizando la blockchain de Stellar. El sistema acepta XLM o stablecoins en la red, registrando cada pago en la blockchain para garantizar trazabilidad y transparencia.
 
-Archivo principal
+# Archivo principal
 El archivo principal que contiene el código para procesar los pagos se llama pago_universidad.
 
-Características
+# Características
 Pago de mensualidades universitarias con criptomonedas XLM en la red Stellar.
 Confirmación instantánea y transparente de cada pago.
 Fácil integración para universidades y estudiantes.
 
-Instalación y uso
+# Instalación y uso
 Para usar el proyecto, primero debes descargar el repositorio a tu computadora. Luego, abre la carpeta del proyecto y asegúrate de tener instalado el entorno adecuado para ejecutar el archivo pago_universidad. Después, ejecuta ese archivo para procesar los pagos universitarios.
 
-Tecnologías utilizadas
+# Tecnologías utilizadas
 Stellar SDK para la conexión con la blockchain.
 Lenguaje o plataforma en la que está desarrollado pago_universidad (aquí puedes agregar más detalles).
 Interfaz de usuario (si la tienes).
 
-Contribuciones
+# Contribuciones
 Si quieres colaborar en el proyecto, puedes crear un problema (issue) o enviar una solicitud de cambio (pull request). ¡Todas las contribuciones son bienvenidas!
 
-Licencia
+# Licencia
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
